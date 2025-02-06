@@ -32,6 +32,14 @@ django-js-asset==2.0.0
 django-widget-tweaks==1.5.0
 ```
 
+## 🌐 AWS Deploy (Elastic Beanstalk)
+Proje, **AWS Elastic Beanstalk** kullanılarak yayınlanmıştır. AWS'de deploy için aşağıdaki adımlar izlenmiştir:
+
+- **Elastic Beanstalk** ortamı oluşturuldu ve **Django** uygulaması deploy edildi.
+- **Route 53** kullanılarak alan adı yönlendirmesi yapıldı.
+- **AWS Certificate Manager** ile SSL sertifikaları entegre edildi.
+
+
 ## ⚡ Kurulum
 Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları takip edebilirsiniz.
 
@@ -69,13 +77,6 @@ python manage.py runserver
 ```
 
 Artık projeniz **http://127.0.0.1:8000/** adresinde çalışıyor olmalıdır.
-
-## 🌐 AWS Deploy (Elastic Beanstalk)
-Proje, **AWS Elastic Beanstalk** kullanılarak yayınlanmıştır. AWS'de deploy için aşağıdaki adımlar izlenmiştir:
-
-- **Elastic Beanstalk** ortamı oluşturuldu ve **Django** uygulaması deploy edildi.
-- **Route 53** kullanılarak alan adı yönlendirmesi yapıldı.
-- **AWS Certificate Manager** ile SSL sertifikaları entegre edildi.
 
 
 **Teşekkürler!** 🚀
