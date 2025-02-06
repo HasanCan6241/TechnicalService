@@ -2,6 +2,11 @@
 
 Bu proje, Tunceli'nin en güvenilir teknik servislerinden biri olan **Gültekin Teknik Servis** için geliştirilmiş bir **Django** tabanlı web uygulamasıdır. Web sitesi, firmanın **hizmetleri**, **blog yazıları**, **bilgilendirici videoları**, **hakkımızda** ve **iletişim** gibi bölümlerini içermektedir. Admin paneli sayesinde sayfa içerikleri kolayca düzenlenebilir ve güncellenebilir.
 
+## 📸 Screenshots
+
+### Homepage
+<img src="images/home.png" alt="home" width="800" height="420">
+
 ## ✨ Projenin Özellikleri
 - **Ana Sayfa:** Firmanın hizmetlerini ve genel tanıtımını içeren modern bir arayüz.
 - **Hizmetler Sayfası:** Verilen hizmetler ve detaylı açıklamalar.
