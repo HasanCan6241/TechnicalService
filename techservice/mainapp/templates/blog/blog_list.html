@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% block extra_css %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="{% static 'css/blog_list.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+<!-- Header Section -->
+<header class="blog-header py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h1 class="display-4 fw-bold text-primary mb-3" data-aos="fade-down">Profesyonel Bloglarımız</h1>
+                <p class="lead text-muted" data-aos="fade-up">En son blog yazılarımızı keşfedin</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Blog List Section -->
+<section class="blog-list py-5">
+    <div class="container">
+        <!-- Filter/Search Area (Opsiyonel) -->
+        <div class="row mb-5" data-aos="fade-up">
+            <div class="col-md-6 mx-auto">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Blog ara..." aria-label="Blog ara">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Cards -->
+        <div class="row g-4">
+            {% for post in posts %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="">
+                <article class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden hover-scale">
+                    <!-- Card Header with Image -->
+                    <div class="card-img-container position-relative">
+                        <img data-src="{{ post.image.url }}"
+                             class="card-img-top lazy"
+                             alt="{{ post.title }}"
+                             loading="lazy">
+                        <div class="card-img-overlay d-flex align-items-start justify-content-end">
+                            <span class="badge bg-primary rounded-pill">
+                                {{ post.category }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card Body -->
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{% static 'images/default-avatar.png' %}"
+                                 alt="{{ post.author }}"
+                                 class="rounded-circle me-2"
+                                 width="30"
+                                 height="30">
+                            <small class="text-muted">{{ post.author }}</small>
+                            <small class="text-muted ms-auto">
+                                <i class="far fa-calendar-alt me-1"></i>
+                                {{ post.created_date|date:"d.m.Y" }}
+                            </small>
+                        </div>
+
+                        <h5 class="card-title fw-bold mb-3">
+                            <a href="{% url 'mainapp:blog_detail' post.slug %}"
+                               class="text-decoration-none text-dark stretched-link">
+                                {{ post.title }}
+                            </a>
+                        </h5>
+
+                        <p class="card-text text-muted">
+                            {{ post.content|striptags|truncatewords:15|safe }}
+                        </p>
+                    </div>
+
+                    <!-- Card Footer -->
+                    <div class="card-footer bg-white border-0 p-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <i class="far fa-comment me-1"></i>
+                                <small class="text-muted">{{ post.comments.count }} Yorum</small>
+                            </div>
+                            <a href="{% url 'mainapp:blog_detail' post.slug %}"
+                               class="btn btn-outline-primary btn-sm">
+                                Devamını Oku
+                                <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if posts.has_other_pages %}
+        <nav class="mt-5" aria-label="Sayfa Gezinme">
+            <ul class="pagination justify-content-center" data-aos="fade-up">
+                {% if posts.has_previous %}
+                <li class="page-item">
+                    <a class="page-link rounded-pill" href="?page={{ posts.previous_page_number }}">
+                        <i class="fas fa-chevron-left"></i> Önceki
+                    </a>
+                </li>
+                {% endif %}
+
+                {% for num in posts.paginator.page_range %}
+                {% if posts.number == num %}
+                <li class="page-item active">
+                    <span class="page-link rounded-pill">{{ num }}</span>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link rounded-pill" href="?page={{ num }}">{{ num }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+
+                {% if posts.has_next %}
+                <li class="page-item">
+                    <a class="page-link rounded-pill" href="?page={{ posts.next_page_number }}">
+                        Sonraki <i class="fas fa-chevron-right"></i>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Required Scripts -->
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="{% static 'js/blog_list-scripts.js' %}"></script>
+{% endblock %}
+{% endblock %}

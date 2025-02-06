@@ -1,0 +1,269 @@
+{% extends 'base.html' %}
+
+{% block title %}Ana Sayfa{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<!-- Hero Section with Brand Partnerships -->
+<div class="hero-section position-relative overflow-hidden">
+    <div class="bg-primary bg-gradient py-5">
+        <div class="container position-relative">
+            <div class="row align-items-center py-5">
+                <div class="col-lg-6 text-white">
+                    <h1 class="display-4 fw-bold mb-4 animate__animated animate__fadeInLeft">Gültekin Teknik Viessmann Yetkili Servisi</h1>
+                    <p class="lead mb-4 animate__animated animate__fadeInLeft animate__delay-1s">Isıtma ve soğutma sistemleriniz için profesyonel çözümler sunuyoruz. 20 yılı aşkın deneyimimizle yanınızdayız.</p>
+                    <div class="d-flex gap-3 animate__animated animate__fadeInUp animate__delay-2s">
+                        <a href="{% url 'mainapp:service_request' %}" class="btn btn-light btn-lg">
+                            <i class="fas fa-tools me-2"></i>Online Randevu
+                        </a>
+                        <a href="tel:{{ contact_info.phone }}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-phone-alt me-2"></i>Hemen Ara
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="brand-carousel position-relative">
+                        <div class="brand-cards">
+                            <!-- Viessmann Brand Card -->
+                            <div class="brand-card bg-white p-4 rounded-lg shadow-sm text-center mb-3" data-brand="viessmann">
+                                <img src="{% static 'img/viessmann-logo.png' %}" alt="Viessmann" class="img-fluid mb-3" style="max-height: 60px;">
+                                <h3 class="h5 text-primary">Viessmann Yetkili Servis</h3>
+                                <p class="small text-muted mb-3">Kombi, Isıtma Sistemleri ve Klima Çözümleri</p>
+                                <a href="" class="btn btn-outline-primary btn-sm">Detaylı Bilgi</a>
+                            </div>
+                            <!-- ECA Brand Card -->
+                            <div class="brand-card bg-white p-4 rounded-lg shadow-sm text-center" data-brand="eca">
+                                <img src="{% static 'img/eca-logo.png' %}" alt="ECA" class="img-fluid mb-3" style="max-height: 60px;">
+                                <h3 class="h5 text-primary">ECA Yetkili Servis</h3>
+                                <p class="small text-muted mb-3">Su Isıtma ve Kombi Sistemleri</p>
+                                <a href="" class="btn btn-outline-primary btn-sm">Detaylı Bilgi</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hizmet Bölgeleri -->
+<section class="regions-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Hizmet Verdiğimiz Bölgeler</h2>
+            <p class="lead text-muted">Tunceli ve çevresinde profesyonel teknik servis hizmeti</p>
+        </div>
+        <div class="text-center">
+            <span class="region-badge">Merkez</span>
+            <span class="region-badge">Pertek</span>
+            <span class="region-badge">Çemişgezek</span>
+            <span class="region-badge">Hozat</span>
+            <span class="region-badge">Ovacık</span>
+            <span class="region-badge">Nazımiye</span>
+            <span class="region-badge">Pülümür</span>
+            <span class="region-badge">Mazgirt</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- Özellikler Section -->
+<div class="container my-5">
+    <div class="row g-4">
+        <div class="col-md-3" data-aos="fade-up">
+            <div class="feature-card text-center p-4 shadow-sm rounded">
+                <div class="display-4 text-primary mb-3">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3 class="h5">Profesyonel Servis</h3>
+                <p class="text-muted">Sertifikalı uzman teknik kadromuzla en kaliteli hizmeti sunuyoruz.</p>
+            </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-card text-center p-4 shadow-sm rounded">
+                <div class="display-4 text-primary mb-3">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="h5">Hızlı Çözüm</h3>
+                <p class="text-muted">Acil durumlar için 24 saat içinde yerinde servis garantisi veriyoruz.</p>
+            </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-card text-center p-4 shadow-sm rounded">
+                <div class="display-4 text-primary mb-3">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="h5">Garantili Hizmet</h3>
+                <p class="text-muted">Tüm bakım ve onarım işlemlerimiz 1 yıl servis garantisi kapsamındadır.</p>
+            </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-card text-center p-4 shadow-sm rounded">
+                <div class="display-4 text-primary mb-3">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <h3 class="h5">Orijinal Parça</h3>
+                <p class="text-muted">Sadece Viessmann orijinal yedek parçalarıyla çalışıyoruz.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Hizmetler Section -->
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="h1">Başlıca Hizmetlerimiz</h2>
+            <p class="lead text-muted">Size sunduğumuz başlıca teknik servis hizmetleri</p>
+        </div>
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="text-primary mb-3">
+                            <i class="fas fa-wrench fa-2x"></i>
+                        </div>
+                        <h3 class="h5 card-title">{{ service.name }}</h3>
+                        <p class="card-text text-muted">{{ service.description }}</p>
+                        <a href="{% url 'mainapp:service_request' %}" class="btn btn-outline-primary">Servis Talebi</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Enhanced CTA Section -->
+<div class="cta-section bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 text-center text-lg-start">
+                <h3 class="mb-3">7/24 Teknik Servis Hizmeti</h3>
+                <p class="lead mb-0">Uzman ekibimiz bir telefon uzağınızda. Acil durumlar için hemen arayın!</p>
+            </div>
+            <div class="col-lg-4 text-center text-lg-end mt-4 mt-lg-0">
+                <a href="{% url 'mainapp:contact' %}" class="btn btn-light btn-lg">
+                    <i class="fas fa-headset me-2"></i>Bize Ulaşın
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Buttons -->
+<div class="whatsapp-float">
+    <a href="https://wa.me/901234567890" class="btn btn-success btn-lg rounded-circle shadow-lg p-3">
+        <i class="fab fa-whatsapp fa-2x"></i>
+    </a>
+</div>
+
+<div class="service-request-float">
+    <a href="#" class="btn btn-primary btn-lg rounded-circle shadow-lg p-3">
+        <i class="fas fa-wrench fa-2x"></i>
+    </a>
+</div>
+
+
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<style>
+    /* Custom styles */
+    .hero-section {
+        background: linear-gradient(135deg, var(--bs-primary) 0%, #2c5282 100%);
+    }
+
+    .feature-icon-bg {
+        width: 80px;
+        height: 80px;
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .hover-effect:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+    }
+
+    .hover-effect:hover .feature-icon-bg {
+        background-color: var(--bs-primary);
+    }
+
+    .hover-effect:hover .feature-icon-bg i {
+        color: white !important;
+    }
+
+    .brand-card {
+        transition: transform 0.3s ease;
+    }
+
+    .brand-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .accordion-button:not(.collapsed) {
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        color: var(--bs-primary);
+    }
+
+    .service-areas-list .badge {
+        transition: all 0.3s ease;
+    }
+
+    .service-areas-list .badge:hover {
+        background-color: var(--bs-primary) !important;
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
+<script>
+
+    // Initialize service areas map
+    const serviceAreas = [
+        { name: 'Kadıköy', lat: 40.9829, lng: 29.0282 },
+        { name: 'Üsküdar', lat: 41.0235, lng: 29.0147 },
+        // Add more areas as needed
+    ];
+
+    function initMap() {
+        const map = L.map('istanbul-map').setView([41.0082, 28.9784], 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        serviceAreas.forEach(area => {
+            L.marker([area.lat, area.lng])
+             .bindPopup(area.name)
+             .addTo(map);
+        });
+    }
+
+    // Populate service areas list
+    function populateServiceAreas() {
+        const container = document.getElementById('serviceAreasList');
+        serviceAreas.forEach(area => {
+            const badge = document.createElement('div');
+            badge.className = 'col-auto';
+            badge.innerHTML = `
+                <span class="badge bg-light text-primary p-2 px-3 rounded-pill">
+                    ${area.name}
+                </span>
+            `;
+            container.appendChild(badge);
+        });
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        initMap();
+        populateServiceAreas();
+    });
+</script>
+{% endblock %}

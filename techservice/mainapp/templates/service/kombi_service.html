@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}Kombi Servisi{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Başlık ve Tanıtım -->
+    <div class="text-center mb-5">
+        <h1 class="display-4">Kombi Servisi</h1>
+        <p class="text-muted">
+            Gültekin Teknik Servis olarak, Tunceli'de kombi modelleriniz için
+            tamir, bakım, onarım ve teknik servis hizmeti sunuyoruz. Güvenilir ekibimiz ve kaliteli hizmet anlayışımızla yanınızdayız.
+        </p>
+    </div>
+
+    <!-- İmaj ve Hizmet Detayları -->
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <img src="{% static 'images/kombi.png' %}" alt="Kombi Servisi" class="img-fluid rounded shadow">
+        </div>
+        <div class="col-lg-6">
+            <h3 class="mb-3">Neden Bizi Seçmelisiniz?</h3>
+            <p>
+                Kombinizin sorunsuz çalışmasını sağlamak için profesyonel bir ekip ve modern ekipmanlarla çalışıyoruz.
+                Enerji tasarrufu sağlamak ve yaşam kalitenizi artırmak için uzman çözümler sunuyoruz.
+            </p>
+            <h4 class="mt-4">Hizmetlerimiz</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><i class="fas fa-tools"></i> Periyodik bakım hizmetleri</li>
+                <li class="list-group-item"><i class="fas fa-search"></i> Arıza tespiti ve hızlı tamir</li>
+                <li class="list-group-item">  <i class="fas fa-cogs"></i> Orijinal yedek parça temini</li>
+                <li class="list-group-item"> <i class="fas fa-shield-alt"></i> Garanti kapsamında onarım</li>
+                <li class="list-group-item"><i class="fas fa-bolt"></i> Acil durumlar için hızlı servis</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Sık Sorulan Sorular -->
+    <div class="mt-5">
+        <h3 class="text-center mb-4">Sık Sorulan Sorular</h3>
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                        Kombi bakımı ne sıklıkla yapılmalıdır?
+                    </button>
+                </h2>
+                <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Kombinizin performansını artırmak ve enerji tasarrufu sağlamak için yılda en az bir kez bakım yaptırmanız önerilir.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                        Arıza durumunda nasıl destek alabilirim?
+                    </button>
+                </h2>
+                <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Bizimle <a href="{% url 'mainapp:contact' %}">iletişime</a> geçebilir veya web sitemizden talep oluşturabilirsiniz.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                        Kombi servisi ne kadar sürer?
+                    </button>
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Kombi bakım ve onarım süresi, arızanın durumuna bağlı olarak değişir. Ancak genellikle 1-2 saat içinde tamamlanmaktadır.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

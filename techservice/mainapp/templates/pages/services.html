@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% block title %}Hizmetlerimiz{% endblock %}
+{% block content %}
+{% load static %}
+
+<style>
+.hero-section {
+    position: relative;
+    height: 60vh;
+    min-height: 400px;
+    overflow: hidden;
+}
+
+.hero-section img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.hero-section:hover img {
+    transform: scale(1);
+}
+
+.hero-overlay {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
+    text-align: center;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+
+.card-img-top {
+        height: 200px;  /* veya istediğiniz yükseklik */
+        object-fit: cover;
+    }
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+.hover-effect {
+    transition: transform 0.3s ease-in-out;
+}
+.hover-effect:hover {
+    transform: translateY(-5px);
+}
+
+.why-us-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+.why-us-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.why-us-item:hover {
+    transform: translateX(10px);
+}
+
+.price-tag {
+    background: #198754;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.cta-button {
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+}
+</style>
+
+<!-- Hero Bölümü -->
+<div class="hero-section">
+    <img src="{% static 'images/bakim-onarim.jpg' %}" alt="Hizmetlerimiz Banner">
+    <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white">
+        <h1 class="display-3 fw-bold mb-4">Hizmetlerimiz</h1>
+        <p class="lead fs-4 mb-0">Gültekin Teknik Servisi Olarak Profesyonel Çözümler Sunuyoruz</p>
+    </div>
+</div>
+
+<!-- Ana İçerik -->
+<div class="container py-5">
+    <h2 class="text-center display-4 fw-bold">Neler Yapıyoruz</h2>
+    <br>
+    <div class="row g-4">
+        {% for service in services %}
+            <div class="col-md-4">
+                <div class="card shadow-lg border-0 h-100 rounded-3">
+                    {% if service.image %}
+                        <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.name }}">
+                    {% else %}
+                        <img src="{% static 'images/default-service.jpg' %}" class="card-img-top" alt="{{ service.name }}">
+                    {% endif %}
+                    <div class="card-body text-center d-flex flex-column">
+                        <h5 class="card-title fw-bold">{{ service.name }}</h5>
+                        <p class="card-text text-muted">{{ service.description }}</p>
+                        <div class="mt-auto">
+                            <a href="{% url 'mainapp:service_request' %}" class="btn btn-outline-primary">
+                                Servis Talebi Oluştur
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Neden Biz Bölümü -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <div class="why-us-card">
+                <h2 class="text-center fw-bold mb-5">Neden Bizi Tercih Etmelisiniz?</h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="why-us-item">
+                            <i class="bi bi-shield-check text-primary fs-3 me-3"></i>
+                            <div>
+                                <h5 class="mb-1">Yetkili Servis Garantisi</h5>
+                                <p class="text-muted mb-0">Resmi yetkili servisi olarak güvenilir hizmet</p>
+                            </div>
+                        </div>
+                        <div class="why-us-item">
+                            <i class="bi bi-people text-primary fs-3 me-3"></i>
+                            <div>
+                                <h5 class="mb-1">Profesyonel Ekip</h5>
+                                <p class="text-muted mb-0">Deneyimli ve uzman teknik kadro</p>
+                            </div>
+                        </div>
+                        <div class="why-us-item">
+                            <i class="bi bi-lightning text-primary fs-3 me-3"></i>
+                            <div>
+                                <h5 class="mb-1">Hızlı Servis</h5>
+                                <p class="text-muted mb-0">Aynı gün servis ve hızlı çözüm garantisi</p>
+                            </div>
+                        </div>
+                        <div class="why-us-item">
+                            <i class="bi bi-gear text-primary fs-3 me-3"></i>
+                            <div>
+                                <h5 class="mb-1">Orijinal Yedek Parça</h5>
+                                <p class="text-muted mb-0">%100 orijinal  yedek parça kullanımı</p>
+                            </div>
+                        </div>
+                        <div class="why-us-item">
+                            <i class="bi bi-patch-check text-primary fs-3 me-3"></i>
+                            <div>
+                                <h5 class="mb-1">Garantili Hizmet</h5>
+                                <p class="text-muted mb-0">Tüm servis ve bakım hizmetlerinde garanti</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

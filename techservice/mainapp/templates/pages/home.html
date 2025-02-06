@@ -1,0 +1,941 @@
+{% extends 'base.html' %}
+
+{% block title %}Ana Sayfa{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+
+<div class="hero-section position-relative overflow-hidden">
+    <!-- Background overlay for better text readability -->
+    <div class="hero-bg"></div>
+
+    <div class="container position-relative py-5">
+        <div class="row align-items-center py-5">
+            <div class="col-lg-6 text-white">
+                 <!-- Company Logo Area -->
+                <div class="company-logo-container mb-4 animate__animated animate__fadeInLeft">
+                    <img src="{{ contact_info.logo }}" alt="Gültekin Teknik Logo" class="img-fluid company-logo">
+                </div>
+                <p class="lead mb-4 animate__animated animate__fadeInLeft animate__delay-1s hero-text">
+                    Isıtma ve soğutma sistemleriniz için profesyonel çözümler sunuyoruz. 20 yılı aşkın deneyimimizle yanınızdayız.
+                </p>
+                <div class="d-flex gap-3 animate__animated animate__fadeInUp animate__delay-2s">
+                    <a href="{% url 'mainapp:service_request' %}" class="btn btn-glass btn-lg">
+                        <i class="fas fa-tools me-2"></i>Online Randevu
+                    </a>
+                    <a href="tel:{{ contact_info.phone }}" class="btn btn-outline-glass btn-lg">
+                        <i class="fas fa-phone-alt me-2"></i>Hemen Ara
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div id="brandCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for brand in brands %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <div class="brand-card bg-glass p-4 rounded-lg text-center">
+                                    <div class="brand-card-content">
+                                        {% if brand.logo %}
+                                            <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" class="img-fluid mb-3" style="max-height: 60px;">
+                                        {% endif %}
+                                        <h3 class="h5 text-white">{{ brand.name }} Yetkili Servis</h3>
+                                        <p class="small text-light mb-3">Kombi, Isıtma Sistemleri ve Klima Çözümleri</p>
+                                        <a href="{{ brand.get_absolute_url }}" class="btn btn-light-outline btn-sm">Detaylı Bilgi</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#brandCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#brandCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+             <!-- Marka Logoları Grid Bölümü -->
+            <div class="brand-logos-section mt-4">
+                <div class="brand-logos-grid animate__animated animate__fadeIn">
+                    {% for brand in brands %}
+                        {% if brand.logo %}
+                        <div class="brand-logo-item">
+                             <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" class="brand-logo-img">
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+{% if regions %}
+<!-- Hizmet Bölgeleri Yeni Yapı -->
+<section class="regions-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Hizmet Verdiğimiz Bölgeler</h2>
+            <p class="lead text-muted">Tunceli ve çevresinde profesyonel teknik servis hizmeti</p>
+        </div>
+        <div class="text-center">
+            {% for region in regions %}
+                <span class="region-badge" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:100 }}"><i class="fas fa-map-marker-alt"></i> {{ region.name }}</span>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+
+<!-- Özellikler Section -->
+<div class="container my-5">
+    <div class="row g-4">
+        <div class="col-md-3" data-aos="fade-up">
+            <div class="feature-card text-center p-4 shadow-sm rounded">
+                <div class="display-4 text-primary mb-3">
+                    <i class="fas fa-tools quick-fact-icon"></i>
+                </div>
+                <h3 class="h5">Profesyonel Servis</h3>
+                <p class="text-muted">Sertifikalı uzman teknik kadromuzla en kaliteli hizmeti sunuyoruz.</p>
+            </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-card text-center p-4 shadow-sm rounded">
+                <div class="display-4 text-primary mb-3">
+                    <i class="fas fa-clock quick-fact-icon"></i>
+                </div>
+                <h3 class="h5">Hızlı Çözüm</h3>
+                <p class="text-muted">Acil durumlar için 24 saat içinde yerinde servis garantisi veriyoruz.</p>
+            </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-card text-center p-4 shadow-sm rounded">
+                <div class="display-4 text-primary mb-3">
+                    <i class="fas fa-shield-alt quick-fact-icon"></i>
+                </div>
+                <h3 class="h5">Garantili Hizmet</h3>
+                <p class="text-muted">Tüm bakım ve onarım işlemlerimiz 1 yıl servis garantisi kapsamındadır.</p>
+            </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-card text-center p-4 shadow-sm rounded">
+                <div class="display-4 text-primary mb-3">
+                    <i class="fas fa-cog quick-fact-icon"></i>
+                </div>
+                <h3 class="h5">Orijinal Parça</h3>
+                <p class="text-muted">Sadece Viessmann orijinal yedek parçalarıyla çalışıyoruz.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_css %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+<style>
+
+ /* Hero Section Styles */
+.hero-section {
+    position: relative;
+    min-height: 75vh;
+    background-color: #13396E; /* Keep the existing deep blue base */
+    background: linear-gradient(135deg, #103361 0%, #103361 100%); /* Added gradient for depth */
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)); /* Softer, more nuanced overlay */
+    z-index: -1;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Additional Enhancements to Existing Styles */
+.hero-text {
+    color: #f0f4f8; /* Slightly softer white for better readability */
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+
+/* Glass Effect Buttons */
+.btn-glass {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-glass:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-outline-glass {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-glass:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Brand Cards */
+.brand-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.brand-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.brand-card-content {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-light-outline {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-light-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991px) {
+    .hero-section {
+        min-height: auto;
+        padding: 4rem 0;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .brand-card {
+        margin: 1rem 0;
+    }
+}
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+    }
+
+    /* Marka Logoları Grid Stilleri */
+.brand-logos-section {
+    padding: 2rem 0;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brand-logos-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.brand-logo-item {
+    aspect-ratio: 3/2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.brand-logo-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.brand-logo-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.brand-logo-item:hover .brand-logo-img {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* Carousel Stilleri */
+.brand-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.brand-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive Ayarlamalar */
+@media (max-width: 1200px) {
+    .brand-logos-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 991px) {
+
+    .brand-logos-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+
+    .company-logo-container {
+        max-width: 300px;
+        margin: 0 auto 2rem;
+    }
+}
+
+@media (max-width: 556px) {
+    .brand-logos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+    /* Company Logo Styles */
+.company-logo-container {
+    max-width: 500px;
+    margin-bottom: 2rem;
+}
+
+.company-logo {
+    width: 140%;
+    height: auto;
+    max-height: 250px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+    .feature-icon-bg {
+        width: 80px;
+        height: 80px;
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .hover-effect:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+    }
+
+    .hover-effect:hover .feature-icon-bg {
+        background-color: var(--bs-primary);
+    }
+
+    .hover-effect:hover .feature-icon-bg i {
+        color: white !important;
+    }
+
+    .accordion-button:not(.collapsed) {
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        color: var(--bs-primary);
+    }
+
+    .service-areas-list .badge {
+        transition: all 0.3s ease;
+    }
+
+    .service-areas-list .badge:hover {
+        background-color: var(--bs-primary) !important;
+        cursor: pointer;
+    }
+        /* Hizmet Bölgeleri Stilleri */
+    .card-header {
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .card-header:hover {
+        background-color: #0d47a1 !important;
+    }
+
+    .card-body-2 {
+        display: none;
+        padding: 1.25rem;
+        background-color: #fff;
+        transition: all 0.3s ease;
+    }
+
+    /* Animasyon için */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .card-body-2[style*="display: block"] {
+        animation: fadeIn 0.3s ease;
+    }
+    .regions-section {
+        padding: 4rem 0;
+        background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    }
+
+    .region-badge i {
+    margin-right: 8px;
+    font-size: 1.2rem;
+    }
+
+    .region-badge {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        margin: 0.5rem;
+        background-color: white;
+        color: #0056b3;
+        border-radius: 50px;
+        font-weight: 500;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .region-badge:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        background-color: #0056b3;
+        color: white;
+    }
+
+
+     .feature-card {
+            height: 100%;
+            transition: all 0.3s ease;
+            border: none;
+            background: white;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+
+    /* Floating Buttons Stilleri */
+    .floating-buttons-container {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        z-index: 1000;
+    }
+
+    .floating-button {
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .floating-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .floating-button.whatsapp {
+        background-color: #25D366;
+        color: white;
+    }
+
+    .floating-button.service {
+        background-color: #0056b3;
+        color: white;
+    }
+
+    .floating-button .tooltip {
+        position: absolute;
+        right: 70px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-size: 0.875rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .floating-button:hover .tooltip {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Responsive Ayarlamalar */
+    @media (max-width: 768px) {
+        .region-badge {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+
+        .floating-buttons-container {
+            right: 10px;
+            bottom: 10px;
+            gap: 0.5rem;
+        }
+
+        .floating-button {
+            width: 50px;
+            height: 50px;
+        }
+    }
+    .hover-lift {
+    transition: transform 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+}
+
+.bg-primary-soft {
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+}
+
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.testimonial-section {
+  background-color: #f8f9fa;
+  padding: 60px 20px;
+}
+
+.sec-title .title {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.sec-title h2 {
+  font-size: 32px;
+  color: #333333;
+}
+
+.testimonial-block {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.testimonial-block:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(100%);
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+
+.card-img-top {
+        height: 200px;  /* veya istediğiniz yükseklik */
+        object-fit: cover;
+    }
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+.hover-effect {
+    transition: transform 0.3s ease-in-out;
+}
+.hover-effect:hover {
+    transform: translateY(-5px);
+}
+.rating .fa-star {
+    color: gold; /* Yıldızların rengini belirler */
+    font-size: 1.5rem; /* Yıldız boyutunu ayarlayabilirsiniz */
+  }
+  .rating .fa-star.empty {
+    color: #ddd; /* Boş yıldızların rengi (opsiyonel) */
+  }
+    </style>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script> -->
+    <script src="{% static 'js/faq.js' %}"></script>
+{% endblock %}
+
+<div class="container py-5">
+    <h2 class="text-center display-4 fw-bold">Başlıca Hizmetlerimiz</h2>
+    <p class="lead text-muted text-center">Size sunduğumuz profesyonel teknik servis hizmetleri</p>
+    <br>
+    <div class="row g-4">
+        {% for service in services %}
+            <div class="col-md-4">
+                <div class="card shadow-lg border-0 h-100 rounded-3">
+                    {% if service.image %}
+                        <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.name }}">
+                    {% else %}
+                        <img src="{% static 'images/default-service.jpg' %}" class="card-img-top" alt="{{ service.name }}">
+                    {% endif %}
+                    <div class="card-body text-center d-flex flex-column">
+                        <h5 class="card-title fw-bold">{{ service.name }}</h5>
+                        <p class="card-text text-muted">{{ service.description }}</p>
+                        <div class="mt-auto">
+                            <a href="{% url 'mainapp:service_request' %}" class="btn btn-outline-primary">
+                                Servis Talebi Oluştur
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+<div class="testimonial-section bg-white py-5">
+  <div class="container">
+    <div class="sec-title text-center mb-4">
+      <span class="title text-primary">Referanslar</span>
+      <h2 class="fw-bold">Müşteri Yorumları</h2>
+    </div>
+    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <!-- İlk Yorum -->
+        <div class="carousel-item active">
+          <div class="testimonial-block bg-light p-4 rounded shadow-sm text-center mx-auto" style="max-width: 600px;">
+            <p class="text-muted fst-italic">"Kombim sürekli arıza çıkarıyordu. Sürekli tamirci çağırıyordum ve bu konu beni çok rahatsız ediyordu. Sonra Gültekin Teknik ile tanıştım. Tüm kombideki sorunları bakımla çözdü ve makul bir fiyat aldı. Teşekkürler, çok memnunum."</p>
+            <h3 class="h6 fw-bold mt-3">- Serkan Deveci</h3>
+             <div class="rating">
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+            </div>
+          </div>
+        </div>
+        <!-- İkinci Yorum -->
+        <div class="carousel-item">
+          <div class="testimonial-block bg-light p-4 rounded shadow-sm text-center mx-auto" style="max-width: 600px;">
+            <p class="text-muted fst-italic">"Tavsiye üzerine Gültekin Teknik Servis'i aradım. Güler yüzlü bir teknisyen geldi. Tüm arızayı giderdi, detaylı bilgi verdi ve çok kibar davrandı. Çok teşekkürler, iyi çalışmalar."</p>
+            <h3 class="h6 fw-bold mt-3">- Kardelen Öz</h3>
+             <div class="rating">
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+            </div>
+          </div>
+        </div>
+        <!-- Üçüncü Yorum -->
+        <div class="carousel-item">
+          <div class="testimonial-block bg-light p-4 rounded shadow-sm text-center mx-auto" style="max-width: 600px;">
+            <p class="text-muted fst-italic">"Kombi ve petekleri her sene bakım yaptırıyordum ama birşey değişmiyordu. Bu sene komşumun tavsiyesi ile Gültekin Teknik Servisini aradım. Gelen servis elemanı işinde uzman biri olduğu işini yapmasından anlaşılıyordu."</p>
+            <h3 class="h6 fw-bold mt-3">- Mehmet Demir</h3>
+             <div class="rating">
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+            <div class="testimonial-block bg-light p-4 rounded shadow-sm text-center mx-auto" style="max-width: 600px;">
+                <p class="text-muted fst-italic">"Evdeki ısıtma sistemimi her kış kontrol ettiriyordum ama verim almakta zorlanıyordum. Gültekin Teknik Servis ile tanıştıktan sonra, servis elemanları tüm sorunları tespit edip kısa sürede çözdüler. Şimdi çok daha verimli çalışıyor."</p>
+                <h3 class="h6 fw-bold mt-3">- Ayşe Yılmaz</h3>
+                <div class="rating">
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+            </div>
+        </div>
+      </div>
+      <!-- Carousel Kontrolleri -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<section class="stats-section py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3" data-aos="fade-up">
+                <div class="display-4 fw-bold"><i class="fas fa-history quick-fact-icon"></i></div>
+                    <h4>20+ Yıl</h4>
+                    <p>Sektör deneyimi</p>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="display-4 fw-bold"> <i class="fas fa-users quick-fact-icon"></i></div>
+                 <h4>5000+</h4>
+                <p>Mutlu Müşteri</p>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="display-4 fw-bold"><i class="fas fa-wrench quick-fact-icon"></i></div>
+                <h4>7/24</h4>
+                <p>Teknik Destek</p>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+              <div class="display-4 fw-bold"> <i class="fas fa-check-circle quick-fact-icon"></i></div>
+                 <h4>%100</h4>
+                <p>Müşteri memnuniyeti</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if latest_blogs %}
+<!-- Blog Bölümü -->
+<section class="blog-section py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">En Son Yayınlanan Blog Yazılarımız</h2>
+            <p class="lead text-muted">Isıtma ve soğutma sistemleri hakkında güncel bilgiler</p>
+        </div>
+
+        <div class="row g-4">
+            {% for post in latest_blogs %}
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm hover-effect">
+                    <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <small class="text-muted">{{ post.created_date|date:"d.m.Y" }}</small>
+                            <small class="text-primary">{{ post.category }}</small>
+                        </div>
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.content|striptags|truncatewords:20 }}</p>
+                         <a href="{% url 'mainapp:blog_detail' post.slug %}"
+                               class="btn btn-outline-primary btn-sm">
+                                Devamını Oku
+                                <i class="fas fa-arrow-right ms-1"></i>
+                         </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+         <!-- Tümünü Görüntüle Butonu -->
+        <div class="text-center mt-5">
+            <a href="{% url 'mainapp:blog_list' %}" class="btn btn-link fs-5 text-decoration-none text-info">Tümünü Görüntüle</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+  <div class="bg-white py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="h1">Merak Ettikleriniz</h2>
+                <p class="lead text-muted">Kafanızdaki soru işaretlerini gidermek için en sık sorulan sorular</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-primary text-white" onclick="toggleCard(this)">
+                            <h5 class="mb-0">
+                                Kombi & Petek Bakımları Ne Zaman Yapılmalı?
+                                <span class="float-end">+</span>
+                            </h5>
+                        </div>
+                        <div class="card-body-2">
+                            <p>Kombi üreticileri, bakım işlemlerinin yılda ortalama bir kez yapılmasını öneriyor. Kombi modellerine bakım yaptırmak için en ideal zaman ise sonbahar ayı olarak öne çıkıyor. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-primary text-white" onclick="toggleCard(this)">
+                            <h5 class="mb-0">
+                                Kombi Arızalarının Sebepleri ve Çözümleri
+                                <span class="float-end">+</span>
+                            </h5>
+                        </div>
+                        <div class="card-body-2">
+                            <p>Elektrik fişi takılı,yada W otomat I konumunda olmalıdır ,Tesisat su basıncı 1-1.5 bar arasında olmalıdır.Bacalı kombilerde baca sensörü atmış olabilir resetlenmelidir. Son çıkan yeni nesil digital kombilerde genelde arızalar ışıklı yada numaralı olarak gösterir, arıza kodları kitapçıkta belirtilmiştir. Arıza kodları hakkında bilginiz ve tecrübeniz yok ise hemen bize ulaşabilirsiniz. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-primary text-white" onclick="toggleCard(this)">
+                            <h5 class="mb-0">
+                                Kombi Arıza Yaptığında Ne Yapmalıyım?
+                                <span class="float-end">+</span>
+                            </h5>
+                        </div>
+                        <div class="card-body-2">
+                            <p>İkinci olarak merak edilen sorumuz, kombi arıza yaptığında ne yapmalıyım oluyor. Elbette kombinizin arıza yapması halinde hemen kapatmanızı öneriyoruz. Sonrasında ise bu alanda uzman olan ekibimizden bilgi alarak hareket etmeniz önemlidir. İletişim sırasında onarım için ekiplerimizin ne zaman geleceği konusunda bilgi verilecektir. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-primary text-white" onclick="toggleCard(this)">
+                            <h5 class="mb-0">
+                                Kombinin Ömrü Ne Kadardır?
+                                <span class="float-end">+</span>
+                            </h5>
+                        </div>
+                        <div class="card-body-2">
+                            <p>İlk olarak sık sık sorulan sorulardan biri kombinin ömrü ne kadardır oluyor. Bu tamamen kombinin kalitesine ve kullanım şekline bağlıdır. Eğer düzenli olarak bakım yaptırırsanız kombinizi uzun yıllar kullanabilirsiniz. Elbette diğer değişkenlerde bu kombi kullanım konusunda son derece etkilidir. Ancak genel olarak kombi kullanım süresi, normalin üstünde olacaktır. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
+
+<!-- Floating Buttons Yeni Yapı -->
+<div class="floating-buttons-container">
+    <a href="https://wa.me/{{ contact_info.phone }}" target="_blank" class="floating-button whatsapp">
+        <i class="fab fa-whatsapp fa-lg"></i>
+        <span class="tooltip">Canlı Destek</span>
+    </a>
+    <a href="{% url 'mainapp:service_request' %}" class="floating-button service">
+        <i class="fas fa-wrench fa-lg"></i>
+        <span class="tooltip">Servis Talebi Oluştur</span>
+    </a>
+</div>
+
+{% if featured_videos %}
+
+<!-- Video Bölümü -->
+<section class="video-section bg-light py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Öne Çıkan Videolarımız</h2>
+            <p class="lead text-muted">Uzman ekibimizden teknik bilgiler ve ipuçları</p>
+        </div>
+        <div class="row g-4">
+            {% for video in featured_videos %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow hover-scale">
+                    <div class="position-relative">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="{{ video.get_youtube_embed_url }}"
+                                    title="{{ video.title }}"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="position-absolute top-0 start-0 p-2">
+                            <span class="badge bg-danger">
+                                <i class="bi bi-star-fill me-1"></i>Öne Çıkan
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">{{ video.title }}</h5>
+                        <p class="card-text text-muted">{{ video.description|truncatewords:20 }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+
+<!-- Contact CTA Section -->
+    <div class="text-center bg-white py-5 ">
+        <h3 class="mb-3">Hemen Servis Talep Edin</h3>
+        <p class="text-muted">Uzman ekibimiz bir telefon uzağınızda. Kombinizle ilgili her türlü sorunda bize ulaşın!</p>
+        <a href="/iletisim/" class="btn btn-success btn-lg shadow">Bize Ulaşın</a>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block title %}Su Arıtma Hizmeti{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Başlık ve Tanıtım -->
+    <div class="text-center mb-5">
+        <h1 class="display-4">Su Arıtma Hizmeti</h1>
+        <p class="text-muted">
+            Gültekin Teknik Servis olarak, Tunceli'de su arıtma cihazlarınız için
+tamir, bakım, onarım ve teknik servis hizmeti sunuyoruz. Temiz ve sağlıklı su kullanımı için yanınızdayız.
+        </p>
+    </div>
+
+    <!-- İmaj ve Hizmet Detayları -->
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <img src="{% static 'images/su-aritma.jpg' %}" alt="Su Arıtma Hizmeti" class="img-fluid rounded shadow" width="500px">
+        </div>
+        <div class="col-lg-6">
+            <h3 class="mb-3">Neden Bizi Seçmelisiniz?</h3>
+            <p>
+                Su arıtma cihazlarınızın sorunsuz çalışmasını sağlamak için profesyonel bir ekip ve modern ekipmanlarla çalışıyoruz.
+                Daha sağlıklı ve temiz bir su deneyimi için uzman çözümler sunuyoruz.
+            </p>
+            <h4 class="mt-4">Hizmetlerimiz</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><i class="fas fa-tools"></i> Periyodik cihaz bakımı</li>
+                <li class="list-group-item"><i class="fas fa-search"></i> Arıza tespiti ve tamir</li>
+                <li class="list-group-item">  <i class="fas fa-cogs"></i> Orijinal filtre ve parça temini</li>
+                <li class="list-group-item"> <i class="fas fa-shield-alt"></i> Garanti kapsamında onarım</li>
+                <li class="list-group-item"><i class="fas fa-bolt"></i> Acil durumlar için hızlı servis</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Sık Sorulan Sorular -->
+<div class="mt-5">
+    <h3 class="text-center mb-4">Sık Sorulan Sorular</h3>
+    <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq1">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                    Su arıtma cihazı filtresi ne sıklıkla değiştirilmelidir?
+                </button>
+            </h2>
+            <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Su arıtma cihazlarınızın filtresi kullanım yoğunluğuna bağlı olarak genellikle 6-12 ayda bir değiştirilmelidir.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq2">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                    Su arıtma cihazı elektrik harcar mı?
+                </button>
+            </h2>
+            <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Çoğu su arıtma cihazı düşük miktarda elektrik harcar, ancak bazı modeller elektrik gerektirmez.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq3">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                    Su arıtma cihazları hangi kirleticileri filtreler?
+                </button>
+            </h2>
+            <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Su arıtma cihazları genellikle klor, tortu, ağır metaller, bakteriler ve bazı kimyasal maddeleri filtreler.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq4">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                    Su arıtma cihazı montajı ne kadar sürer?
+                </button>
+            </h2>
+            <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Su arıtma cihazı montajı genellikle 1-2 saat içinde tamamlanabilir.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq5">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                    Su arıtma cihazı kullanımında nelere dikkat edilmelidir?
+                </button>
+            </h2>
+            <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Cihazın düzenli bakımını yaptırmak, filtreleri zamanında değiştirmek ve kullanım kılavuzuna uygun şekilde kullanmak önemlidir.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

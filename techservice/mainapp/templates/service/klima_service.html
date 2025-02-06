@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}Klima Servisi{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<section class="container py-5">
+    <!-- Başlık ve Tanıtım -->
+    <div class="text-center mb-5">
+        <h1 class="display-4">Klima Servisi</h1>
+        <p class="text-muted">Gültekin Teknik Servis olarak, Tunceli'de klima modelleriniz için profesyonel servis ve bakım hizmetleri sunuyoruz.</p>
+    </div>
+
+    <!-- İmaj ve Hizmet Detayları -->
+    <div class="row align-items-center mb-5">
+        <div class="col-md-6">
+            <img src="{% static 'images/klima-servisi.jpg' %}" class="img-fluid rounded shadow" alt="Klima Servisi">
+        </div>
+        <div class="col-md-6">
+            <h3 class="mb-3">Hizmetlerimiz</h3>
+            <p>Klimalarınızın en verimli şekilde çalışmasını sağlamak ve uzun ömürlü olmalarını temin etmek için geniş kapsamlı hizmetler sunuyoruz:</p>
+            <ul class="list-unstyled">
+                <li><i class="fas fa-snowflake text-primary me-2"></i>Montaj ve demontaj hizmetleri</li>
+                <li><i class="fas fa-snowflake text-primary me-2"></i>Periyodik bakım ve temizlik</li>
+                <li><i class="fas fa-snowflake text-primary me-2"></i>Hızlı ve etkili arıza giderme</li>
+                <li><i class="fas fa-snowflake text-primary me-2"></i>Soğutucu gaz dolumu ve sızıntı tespiti</li>
+                <li><i class="fas fa-snowflake text-primary me-2"></i>Enerji verimliliği danışmanlığı</li>
+                <li><i class="fas fa-snowflake text-primary me-2"></i>Orijinal yedek parça temini</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Neden Bizi Seçmelisiniz? -->
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <h3 class="mb-4 text-center">Neden Gültekin Teknik Servis?</h3>
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-tools fa-3x text-primary mb-3"></i>
+                    <h5>Uzman Ekip</h5>
+                    <p>Deneyimli ve sertifikalı teknisyenlerimizle kaliteli hizmet sunuyoruz.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-clock fa-3x text-primary mb-3"></i>
+                    <h5>Hızlı Müdahale</h5>
+                    <p>Acil durumlarda hızlı ve etkili çözümler sağlayarak size zaman kazandırıyoruz.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-check-circle fa-3x text-primary mb-3"></i>
+                    <h5>Garantili Hizmet</h5>
+                    <p>Yaptığımız işlerde kaliteyi garanti ediyor ve müşteri memnuniyetini ön planda tutuyoruz.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Sık Sorulan Sorular -->
+    <div>
+        <h3 class="text-center mb-4">Sık Sorulan Sorular</h3>
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                        Klima bakımı ne sıklıkla yapılmalıdır?
+                    </button>
+                </h2>
+                <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Klimalarınızın verimli çalışmasını sağlamak ve enerji tasarrufu yapmak için yılda en az iki kez bakım yaptırmanız önerilir.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                        Acil durumlarda nasıl destek alabilirim?
+                    </button>
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Bizimle <a href="{% url 'mainapp:contact' %}">iletişime</a> geçebilir veya web sitemizden talep oluşturabilirsiniz.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

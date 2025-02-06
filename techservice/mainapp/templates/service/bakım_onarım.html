@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Bakım ve Onarım{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<section class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4">Bakım ve Onarım Hizmetlerimiz</h1>
+        <p class="text-muted">Isıtma ve soğutma sistemleriniz için profesyonel, güvenilir ve garantili bakım ve onarım hizmetleri sunuyoruz.</p>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <img src="{% static 'images/bakim-onarim.jpg' %}" class="img-fluid rounded shadow" alt="Bakım ve Onarım">
+        </div>
+        <div class="col-md-6">
+            <h3>Hizmet Kapsamı</h3>
+            <p>Donanımlı ekipmanlarımız ve deneyimli personelimizle, tüm ısıtma ve soğutma sistemlerinizin verimli bir şekilde çalışmasını sağlıyoruz:</p>
+            <ul class="list-unstyled">
+                <li><i class="fas fa-tools text-secondary me-2"></i>Periyodik kontrol ve bakım</li>
+                <li><i class="fas fa-tools text-secondary me-2"></i>Arıza tespiti ve çözümü</li>
+                <li><i class="fas fa-tools text-secondary me-2"></i>Yedek parça değişimi</li>
+                <li><i class="fas fa-gas-pump text-info me-2"></i>Soğutucu gaz dolumu ve sızıntı tespiti</li>
+                <li><i class="fas fa-chart-line text-success me-2"></i>Enerji verimliliği danışmanlığı</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<section class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="display-5">Sık Sorulan Sorular</h2>
+        <p class="text-muted">Müşterilerimiz tarafından sıkça sorulan soruları aşağıda bulabilirsiniz.</p>
+    </div>
+    <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faqOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                   Kombi Neden Arızalanır?
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="faqOne" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Kombilerin verdiği arızalar arasında petek temizliği yapılmama sıkıntısı da bulunmaktadır. Uzun zaman kullanılmayan kombiler, peteklerde çamurlaşmış tabakaların oluşması ile arıza verir.
+
+Bu nedenle ısınmayan petekler yüzünden kış aylarında büyük sıkıntılar yaşarsınız. Kombi Bakım Acil  yetkili servisimiz sayesinde, bu tür problemlerde size en iyi çözüm önerileri sunan ekibimize güvenerek, hızlı bir şekilde sorundan kurtulabilirsiniz.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faqTwo">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Enerji verimliliği nasıl artırılır?
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="faqTwo" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Enerji verimliliği için kombi ve kazanlarınızın düzenli bakımı, gaz kaçağı tespiti ve soğutucu gaz dolumu gibi işlemler önemlidir.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

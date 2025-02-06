@@ -1,0 +1,125 @@
+/* blog-detail.css */
+ :root {
+            --primary-color: black;
+            --secondary-color: #6c757d;
+        }
+/* Hero Section Styles */
+.blog-hero {
+    min-height: 60vh;
+    background-color: #000;
+}
+
+.hero-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+}
+
+/* Content Styles */
+.blog-content {
+    position: relative;
+    margin-top: -100px;
+}
+
+.blog-post-content {
+    font-family: 'Georgia', serif;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.blog-post-content p {
+    margin-bottom: 1.5rem;
+}
+
+.blog-post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 2rem 0;
+}
+
+.blog-post-content h2,
+.blog-post-content h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+/* Tags and Share Buttons */
+.btn-light {
+    background-color: var(--light-gray);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-light:hover {
+    background-color: #e5e7eb;
+    transform: translateY(-2px);
+}
+
+.share-section .btn {
+    transition: all 0.3s ease;
+}
+
+.share-section .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Author Section */
+.author-section .card {
+    transition: transform 0.3s ease;
+}
+
+.author-section .card:hover {
+    transform: translateY(-5px);
+}
+
+/* Related Posts */
+.related-posts .card {
+    transition: all 0.3s ease;
+}
+
+.related-posts .card:hover {
+    transform: translateY(-5px);
+}
+
+.related-posts .card-img-top {
+    transition: transform 0.5s ease;
+}
+
+.related-posts .card:hover .card-img-top {
+    transform: scale(1.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .blog-hero {
+        min-height: 50vh;
+    }
+
+    .blog-content {
+        margin-top: -50px;
+    }
+
+    .display-4 {
+        font-size: 2rem;
+    }
+}

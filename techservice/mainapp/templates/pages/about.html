@@ -1,0 +1,299 @@
+{% extends 'base.html' %}
+{% block title %}Hakkımızda{% endblock %}
+{% block content %}
+{% load static %}
+
+<style>
+/* Reset ve Genel Stiller */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Hero Bölümü */
+.about-hero {
+    /*background: linear-gradient(135deg, #0d6efd 0%, #084298 100%);*/
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('{% static "images/about_page_title_bg.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    /*opacity: 0.2;*/
+    z-index: 1;
+}
+
+.about-hero .container {
+    position: relative;
+    z-index: 2;
+    padding: 3rem 1rem;
+}
+
+/* Kartlar */
+.info-card {
+    background: #ffffff;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background: none;
+    border: none;
+    padding: 2rem 1.5rem 1rem;
+}
+
+.card-header h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.card-header h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: currentColor;
+    opacity: 0.5;
+    transition: width 0.3s ease;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* İletişim Öğeleri */
+.contact-item {
+    background: #f8f9fa;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-icon {
+    min-width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    background: var(--icon-bg, #0d6efd);
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateX(5px);
+    background: #e9ecef;
+}
+
+.contact-item:hover .contact-icon {
+    transform: scale(1.1);
+}
+
+/* İstatistikler */
+.stats-container {
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    border-radius: 1rem;
+    padding: 3rem 1rem;
+    margin-top: 4rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1.5rem;
+    position: relative;
+}
+
+.stat-number {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #0d6efd;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.stat-item .text-muted {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .about-hero {
+        min-height: 30vh;
+    }
+
+    .about-hero .display-4 {
+        font-size: calc(1.8rem + 1.5vw);
+    }
+
+    .lead {
+        font-size: 1rem;
+    }
+
+    .info-card {
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-item {
+        padding: 1rem;
+    }
+
+    .contact-icon {
+        min-width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .stats-container {
+        padding: 2rem 0.5rem;
+    }
+
+    .stat-item {
+        padding: 1rem 0.5rem;
+    }
+}
+
+/* Container Genişliği Optimizasyonu */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+</style>
+
+<!-- Hero Bölümü -->
+<section class="about-hero">
+    <div class="container text-center text-white">
+        <h1 class="display-4 fw-bold mb-3">Hakkımızda</h1>
+        <p class="lead mb-0">Viessmann Yetkili Servisi Olarak Profesyonel Çözümler</p>
+    </div>
+</section>
+
+<!-- Ana İçerik -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Gültekin Teknik Servis Kartı -->
+            <div class="col-lg-6">
+                <div class="info-card">
+                    <div class="card-header bg-primary text-white">
+                        <h4>Gültekin Teknik Servis</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-4">
+                            Gültekin Teknik Servis, Tunceli'de Isıtma ve Soğutma Sistemlerinde Güvenilir Çözüm Ortağınız
+                        </p>
+                        <p class="mb-4">
+                            Tunceli'nin en güvenilir teknik servislerinden biri olan Gültekin Teknik Servis, ısıtma ve soğutma sistemlerinizde profesyonel çözümler sunuyor. Viessmann, ECA, İmmergas gibi sektörün önde gelen markaları başta olmak üzere tüm kombi, kazan, klima ve diğer ısıtma-soğutma sistemlerinin tamir, bakım ve onarım hizmetlerini uzman kadromuzla gerçekleştiriyoruz.
+                        </p>
+                        <p class="mb-4">
+                            Kullanıcı memnuniyetini ön planda tutarak, her türlü teknik sorunu hızlı ve etkili bir şekilde çözüyoruz. Periyodik bakım hizmetlerimiz sayesinde cihazlarınızın verimli ve uzun ömürlü çalışmasını sağlarken, anında müdahale gerektiren arızalar için acil servis desteği sunarak hayatınızı kolaylaştırıyoruz.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- İletişim Bilgileri Kartı -->
+            <div class="col-lg-6">
+                <div class="info-card">
+                    <div class="card-header bg-dark text-white">
+                        <h4>İletişim Bilgileri</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <strong class="d-block mb-1">Telefon</strong>
+                                {{ contact_info.phone }}
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon" style="--icon-bg: #6c757d;">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <strong class="d-block mb-1">E-Posta</strong>
+                                <a href="mailto:{{ contact_info.email }}" class="text-decoration-none text-dark">
+                                    {{ contact_info.email }}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon" style="--icon-bg: #dc3545;">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <strong class="d-block mb-1">Adres</strong>
+                                {{ contact_info.address }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- İstatistikler -->
+        <div class="stats-container">
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">20+</div>
+                        <div class="text-muted">Yıllık Deneyim</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">5000+</div>
+                        <div class="text-muted">Mutlu Müşteri</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="text-muted">Teknik Destek</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="text-muted">Müşteri Memnuniyeti</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

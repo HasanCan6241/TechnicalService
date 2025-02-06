@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gültekin Teknik Servis - {% block title %}{% endblock %}</title>
+    {% load static %}
+
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="icon" type="image/webp" href="{% static 'images/favicon.webp' %}">
+
+    <style>
+        :root {
+            --primary-color: black;
+            --secondary-color: #6c757d;
+        }
+
+        body {
+           font-family: 'Roboto', sans-serif;
+        }
+
+        .top-bar {
+            background: linear-gradient(90deg, var(--primary-color), #003366);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .navbar {
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            padding: 1.5rem 1rem;
+            color: #2c3e50;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 0.5rem;
+        }
+
+        .dropdown-item {
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+        }
+
+        .footer {
+            background: #1a1a1a;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), #003366);
+        }
+
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar py-2">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center">
+                        <a href="tel:{{ contact_info.phone }}" class="text-white text-decoration-none me-4">
+                            <i class="fas fa-phone-alt me-2"></i>{{ contact_info.phone }}
+                        </a>
+                        <span class="text-white">
+                            <i class="fas fa-clock me-2"></i>{{ contact_info.working_hours }}
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="social-links text-end">
+                        <a href="{{ contact_info.social_media.facebook }}" target="_blank" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="{{ contact_info.social_media.instagram }}" target="_blank" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="{{ contact_info.social_media.whatsapp }}" target="_blank" class="text-white"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand py-2" href="{% url 'mainapp:home' %}">
+                <img src="{{ contact_info.logo }}" alt="Logo" height="50" width="100" class="d-inline-block align-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mainapp:home' %}">Ana Sayfa</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
+                            Hizmetlerimiz
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end animate slideIn" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="{% url 'mainapp:combi_service' %}">Kombi Servisi</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mainapp:boiler_service' %}">Kazan Servisi</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mainapp:airconditioning' %}">Klima Servisi</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mainapp:su_aritma' %}">Su Arıtma</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mainapp:sofben_bakimi' %}">Şofben Bakımı</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mainapp:repair' %}">Bakım ve Onarım</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mainapp:services' %}">Teknik Servis</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mainapp:blog_list' %}">Bloglarımız</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mainapp:video_gallery' %}">Bilgilendirici Videolar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mainapp:about' %}">Hakkımızda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mainapp:contact' %}">İletişim</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer pt-5 pb-3">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-4">Hakkımızda</h5>
+                    <p class="text-light opacity-75">Tunceli'nin en güvenilir teknik servislerinden biri olan Gültekin Teknik Servis, ısıtma ve soğutma sistemlerinizde profesyonel hizmetler sunuyor.</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-4">İletişim Bilgileri</h5>
+                    <ul class="list-unstyled text-light opacity-75">
+                        <li class="mb-3">
+                            <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                            {{ contact_info.address }}
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-phone me-2 text-primary"></i>
+                            {{ contact_info.phone }}
+                        </li>
+                        <li class="mb-3">
+                            <i class="far fa-clock me-2 text-primary"></i>
+                            {{ contact_info.working_hours }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-4">Hızlı Bağlantılar</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="{% url 'mainapp:home' %}" class="text-light text-decoration-none opacity-75 hover-opacity-100">Ana Sayfa</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{% url 'mainapp:services' %}" class="text-light text-decoration-none opacity-75 hover-opacity-100">Hizmetlerimiz</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{% url 'mainapp:service_request' %}" class="text-light text-decoration-none opacity-75 hover-opacity-100">Servis Talebi</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{% url 'mainapp:contact' %}" class="text-light text-decoration-none opacity-75 hover-opacity-100">İletişim</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <small class="text-light opacity-75">&copy; 2024 Gültekin Teknik Servis. Tüm hakları saklıdır.</small>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <img src="{{ contact_info.logo }}" alt="Viessmann" style="max-height: 150px;" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                document.querySelector('.navbar').classList.add('scrolled');
+            } else {
+                document.querySelector('.navbar').classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Kazan Servisi{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<section class="container py-5">
+    <!-- Başlık ve Tanıtım -->
+    <div class="text-center mb-5">
+        <h1 class="display-4">Kazan Servisi</h1>
+        <p class="text-muted">Gültekin Teknik Servis olarak, kazanlar için profesyonel bakım, tamir ve teknik destek sağlıyoruz.</p>
+    </div>
+
+    <!-- İmaj ve Hizmet Detayları -->
+    <div class="row align-items-center mb-5">
+        <div class="col-md-6">
+            <img src="{% static 'images/kazan-bakimi.jpg' %}" class="img-fluid rounded shadow" alt="Kazan Servisi">
+        </div>
+        <div class="col-md-6">
+            <h3 class="mb-3">Hizmet Detayları</h3>
+            <p>Isıtma sistemlerinizin en verimli şekilde çalışmasını sağlamak için uzman ekibimiz modern ekipmanlarla çalışmaktadır. Hem enerji tasarrufu sağlayan hem de uzun ömürlü çözümler sunuyoruz.</p>
+            <ul class="list-unstyled">
+                <li><i class="fas fa-check text-success me-2"></i>Periyodik bakım hizmetleri</li>
+                <li><i class="fas fa-check text-success me-2"></i>Hızlı ve etkili arıza tespiti</li>
+                <li><i class="fas fa-check text-success me-2"></i>Orijinal yedek parça temini</li>
+                <li><i class="fas fa-check text-success me-2"></i>Acil müdahale hizmeti</li>
+                <li><i class="fas fa-check text-success me-2"></i>Garanti kapsamında onarım</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Sık Sorulan Sorular -->
+    <div>
+        <h3 class="text-center mb-4">Sık Sorulan Sorular</h3>
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                        Kazan bakımı ne sıklıkla yapılmalıdır?
+                    </button>
+                </h2>
+                <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Kazan sistemlerinin verimli çalışmasını sağlamak ve uzun ömürlü olmasını garanti etmek için yılda bir kez bakım yaptırmanız önerilir.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                        Acil durumlarda nasıl destek alabilirim?
+                    </button>
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Bizimle <a href="{% url 'mainapp:contact' %}">iletişime</a> geçebilir veya web sitemizden talep oluşturabilirsiniz.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

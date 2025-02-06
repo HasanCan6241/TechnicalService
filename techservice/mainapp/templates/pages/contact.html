@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}İletişim{% endblock %}
+
+{% block content %}
+
+<style>
+
+    /* Renkli İkonlar için Genel Stil */
+.card-title i {
+    color: #007bff; /* Varsayılan olarak mavi renk */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.card-title i:hover {
+    color: #28a745; /* Hover'da yeşil renk */
+    transform: scale(1.2); /* Hafif büyüme efekti */
+}
+
+.btn-outline-secondary i {
+    color: #6c757d; /* Sosyal medya ikonları için gri ton */
+}
+
+.btn-outline-secondary i:hover {
+    color: #343a40; /* Hover'da koyu gri ton */
+}
+
+/* Sosyal Medya İkonları için Özel Renkler */
+.btn-outline-secondary.facebook i {
+    color: #3b5998; /* Facebook mavi */
+}
+.btn-outline-secondary.twitter i {
+    color: #1da1f2; /* Twitter mavi */
+}
+.btn-outline-secondary.instagram i {
+    color: #e4405f; /* Instagram pembe */
+}
+.btn-outline-secondary.linkedin i {
+    color: #0077b5; /* LinkedIn mavi */
+}
+.btn-outline-secondary.youtube i {
+    color: #ff0000; /* YouTube kırmızı */
+}
+.btn-outline-secondary.whatsapp i {
+    color: #25d366; /* WhatsApp yeşil */
+}
+
+/* Gönder Butonu için Stil */
+.btn-primary i {
+    margin-right: 5px;
+    color: #fff; /* Beyaz ikon */
+}
+.btn-primary:hover i {
+    color: #ffc107; /* Hover'da sarı ikon */
+}
+.brand-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+.brand-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+.brand-logo {
+        width: 80px;
+        height: 20px;
+        object-fit: cover;
+        border-radius: 3px;
+        margin-right: 10px;
+    }
+
+.brand-item a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+.brand-item a:hover {
+        text-decoration: underline;
+    }
+
+</style>
+<div class="container my-5">
+    <div class="row">
+        <!-- İletişim Bilgileri -->
+        <div class="col-md-5">
+            <h2 class="mb-4">İletişim Bilgileri</h2>
+
+            <!-- Adres -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-map-marker-alt"></i> Adres
+                    </h5>
+                    <p class="card-text">
+                        {{ company_contact.address }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Telefon ve Çalışma Saatleri -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-phone-alt"></i> İletişim
+                    </h5>
+                     <p class="card-text">
+                        <strong>Telefon:</strong> {{ company_contact.phone }}<br>
+                        <strong>Çalışma Saatleri:</strong> {{ company_contact.working_hours }}<br>
+                        <strong>Genel E-Posta:</strong>
+                        <a href="mailto:{{ company_contact.email }}">{{ company_contact.email }}</a>
+                        <hr>
+                        <strong>Markalar ve Yetkili Servis E-Postaları:</strong>
+                        <br>
+                        <ul class="brand-list">
+                            {% for brand_item in brand %}
+                                {% if brand_item.service_email %}
+                                    <li class="brand-item">
+                                        {% if brand_item.logo %}
+                                            <img src="{{ brand_item.logo.url }}" alt="{{ brand_item.name }}" class="brand-logo">
+                                        {% endif %}
+                                        <span><strong>{{ brand_item.name }}:</strong></span>
+                                        <a href="mailto:{{ brand_item.service_email }}">{{ brand_item.service_email }}</a>
+                                        <hr>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Sosyal Medya -->
+            {% if company_contact.social_media %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-share-alt"></i> Sosyal Medya
+                    </h5>
+                    <ul class="list-inline">
+                        {% for platform, link in company_contact.social_media.items %}
+                            <li class="list-inline-item">
+                               <a href="{{ link }}" target="_blank" class="btn btn-outline-secondary btn-sm {{ platform|lower }}">
+                                    {% if platform|lower == "facebook" %}
+                                        <i class="fab fa-facebook-f"></i>
+                                    {% elif platform|lower == "twitter" %}
+                                        <i class="fab fa-twitter"></i>
+                                    {% elif platform|lower == "instagram" %}
+                                        <i class="fab fa-instagram"></i>
+                                    {% elif platform|lower == "linkedin" %}
+                                        <i class="fab fa-linkedin"></i>
+                                    {% elif platform|lower == "youtube" %}
+                                        <i class="fab fa-youtube"></i>
+                                    {% elif platform|lower == "whatsapp" %}
+                                        <i class="fab fa-whatsapp"></i>
+                                    {% else %}
+                                        <i class="fas fa-globe"></i> {{ platform }}
+                                    {% endif %}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+            <!-- Harita -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-map"></i> Konum
+                    </h5>
+                    <div class="ratio ratio-4x3">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3131.099037346776!2d39.534951315507684!3d39.07985168394469!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4071224ce0d23c07%3A0x9db4c48cb6b03326!2sViess%20Mann%20Yetkili%20Servis!5e0!3m2!1str!2str!4v1673541099182!5m2!1str!2str"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- İletişim Formu -->
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title mb-0">
+                        <i class="fas fa-envelope"></i> Bize Ulaşın
+                    </h2>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                                {% render_field field class="form-control" %}
+                                {% if field.errors %}
+                                    <div class="text-danger">
+                                        {{ field.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Mesaj Gönder
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

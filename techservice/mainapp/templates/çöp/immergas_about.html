@@ -1,0 +1,288 @@
+{% extends 'base.html' %}
+
+{% block title %}İmmergas Kombi Hakkında{% endblock %}
+
+{% block content %}
+<style>
+   .elementor-accordion {
+        max-width: 1600px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .model-button {
+        width: 100%;
+        padding: 15px 28px;
+        background-color: #4A90E2;
+        border: none;
+        text-align: left;
+        font-size: 20px;
+        font-weight: 600;
+        color: #ffffff;
+        position: relative;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .model-button:hover {
+        background-color: #3B78D8;
+        box-shadow: 0 4px 12px rgba(59, 120, 216, 0.3);
+    }
+
+    .error-codes-container {
+        display: none;
+        border-top: 1px solid #eeeeee;
+    }
+
+    .error-codes-container.show {
+        display: block;
+    }
+
+    .error-button {
+        width: 100%;
+        padding: 15px 25px;
+        background-color: #f3f4f6;
+        border: none;
+        text-align: left;
+        font-size: 18px;
+        font-weight: 500;
+        color: #333333;
+        position: relative;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    .error-button:hover {
+        background-color: #e6e8eb;
+        color: #4A90E2;
+    }
+
+    .error-content {
+        display: none;
+        padding: 20px 30px;
+        background-color: #ffffff;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    .error-content.show {
+        display: block;
+    }
+
+    .accordion-icon {
+        font-size: 24px;
+        font-weight: 300;
+        color: #ffffff;
+        transition: transform 0.3s ease;
+    }
+
+    .error-code {
+        color: #4A90E2;
+        font-weight: 600;
+        margin-right: 10px;
+        padding: 6px 12px;
+        background-color: rgba(74, 144, 226, 0.1);
+        border-radius: 6px;
+    }
+
+    .error-description {
+        color: #555555;
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .error-solution {
+        background-color: #f8fafc;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .error-solution-title {
+        color: #4A90E2;
+        font-weight: 600;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .error-solution-title i {
+        font-size: 22px;
+    }
+
+    .page-title {
+        color: #333333;
+        font-size: 42px;
+        font-weight: 700;
+        text-align: center;
+        margin: 40px 0;
+    }
+    .accordion-button {
+            background-color: #ffffff;
+            color: #333;
+            border: 1px solid #ddd;
+            box-shadow: none;
+        }
+        .accordion-button:focus {
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+        .accordion-button.collapsed {
+            background-color: #ffffff;
+            color: #333;
+        }
+        .accordion-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .accordion-body {
+            background-color: #f8f9fa;
+            padding: 15px;
+        }
+        .accordion-header button:after {
+            content: '\25bc';
+            font-size: 1rem;
+            float: right;
+            transition: transform 0.3s;
+        }
+        .accordion-header button.collapsed:after {
+            transform: rotate(-90deg);
+        }
+</style>
+
+<div class="container">
+     <h2 class="page-title">Sıkça Sorulan Sorular</h2>
+    <div class="accordion" id="faqAccordion">
+        {% for faq in faqs %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq{{ forloop.counter }}">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#answer{{ forloop.counter }}" aria-expanded="false" aria-controls="answer{{ forloop.counter }}">
+                    {{ faq.question }}
+                </button>
+            </h2>
+            <div id="answer{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="faq{{ forloop.counter }}" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    {{ faq.answer }}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>Bu markaya ait sıkça sorulan soru bulunmamaktadır.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container">
+    <h1 class="page-title">İmmergas Kombi Modelleri ve Hata Kodları</h1>
+
+    <div class="elementor-accordion">
+        {% for model in boiler_models %}
+        <div class="model-section">
+            <button class="model-button">
+                <span>{{ model.name }}</span>
+                <span class="accordion-icon">+</span>
+            </button>
+            <div class="error-codes-container">
+                {% for error in model.error_codes.all %}
+                <div class="error-item">
+                    <button class="error-button">
+                        <span><span class="error-code">{{ error.code }}</span> {{ error.description }}</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="error-content">
+                        <div class="error-description">
+                            {{ error.description }}
+                        </div>
+                        <div class="error-solution">
+                            <div class="error-solution-title">
+                                <i class="fas fa-tools"></i>
+                                Çözüm:
+                            </div>
+                            <div>{{ error.solution }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Model butonları için event listener
+    const modelButtons = document.querySelectorAll('.model-button');
+    modelButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const container = this.nextElementSibling;
+            const icon = this.querySelector('.accordion-icon');
+
+            // Diğer tüm model containerlarını kapat
+            const allContainers = document.querySelectorAll('.error-codes-container');
+            const allModelIcons = document.querySelectorAll('.model-button .accordion-icon');
+
+            allContainers.forEach(item => {
+                if (item !== container) {
+                    item.classList.remove('show');
+                }
+            });
+
+            allModelIcons.forEach(item => {
+                if (item !== icon) {
+                    item.textContent = '+';
+                }
+            });
+
+            // Tıklanan container'ı aç/kapat
+            container.classList.toggle('show');
+            icon.textContent = container.classList.contains('show') ? '−' : '+';
+        });
+    });
+
+    // Hata kodu butonları için event listener
+    const errorButtons = document.querySelectorAll('.error-button');
+    errorButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const content = this.nextElementSibling;
+            const icon = this.querySelector('.accordion-icon');
+
+            // Aynı model içindeki diğer hata içeriklerini kapat
+            const parentContainer = this.closest('.error-codes-container');
+            const siblingContents = parentContainer.querySelectorAll('.error-content');
+            const siblingIcons = parentContainer.querySelectorAll('.error-button .accordion-icon');
+
+            siblingContents.forEach(item => {
+                if (item !== content) {
+                    item.classList.remove('show');
+                }
+            });
+
+            siblingIcons.forEach(item => {
+                if (item !== icon) {
+                    item.textContent = '+';
+                }
+            });
+
+            // Tıklanan içeriği aç/kapat
+            content.classList.toggle('show');
+            icon.textContent = content.classList.contains('show') ? '−' : '+';
+        });
+    });
+});
+</script>
+{% endblock %}

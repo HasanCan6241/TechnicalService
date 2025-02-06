@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gültekin Teknik - Viessmann Yetkili Servisi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #005CA9;
+            --secondary-color: #FF6B00;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), #003366);
+            min-height: 600px;
+            position: relative;
+        }
+
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .brand-section {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/api/placeholder/1920/600');
+            background-size: cover;
+            padding: 4rem 0;
+        }
+
+        .brand-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 10px;
+            transition: all 0.3s;
+            height: 100%;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .services-section {
+            background: #f8f9fa;
+            padding: 5rem 0;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            transition: all 0.3s;
+            height: 100%;
+            padding: 2rem;
+            text-align: center;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .regions-section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .region-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            margin: 0.5rem;
+            border-radius: 25px;
+            background: #f8f9fa;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .region-badge:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .quick-facts {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .quick-fact-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .quick-fact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .service-request-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<section class="hero-section d-flex align-items-center text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Profesyonel Isıtma ve Soğutma Çözümleri</h1>
+                <p class="lead mb-4">20+ yıllık deneyim | 7/24 Teknik Destek | Garantili Hizmet</p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="btn btn-light btn-lg">Online Randevu</a>
+                    <a href="tel:+901234567890" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-phone-alt me-2"></i>Hemen Ara
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="/api/placeholder/600/400" alt="Servis" class="img-fluid rounded-3 shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bilgilendirme Kutuları -->
+<section class="container position-relative">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="info-box">
+                <i class="fas fa-shield-alt info-icon"></i>
+                <h3>Güvenilir Hizmet</h3>
+                <p>Gültekin Teknik olarak, orijinal parça garantisi ve profesyonel ekibimizle hizmetinizdeyiz.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="info-box">
+                <i class="fas fa-clock info-icon"></i>
+                <h3>Hızlı Müdahale</h3>
+                <p>Acil durumlar için 2 saat içinde müdahale garantisi. 7/24 teknik destek hizmeti sunuyoruz.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="info-box">
+                <i class="fas fa-certificate info-icon"></i>
+                <h3>Garantili Çözüm</h3>
+                <p>Tüm bakım ve onarım işlemlerimiz 1 yıl servis garantisi altındadır.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Marka Bölümü -->
+<section class="brand-section text-white mt-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Yetkili Servis Olduğumuz Markalar</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="brand-card p-4 text-center">
+                    <img src="/api/placeholder/150/50" alt="Viessmann" class="mb-3">
+                    <h3 class="text-dark">Viessmann</h3>
+                    <p class="text-muted">Kombi, Kazan ve Isıtma Sistemleri</p>
+                    <a href="#" class="btn btn-primary">Ürünler ve Servis</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="brand-card p-4 text-center">
+                    <img src="/api/placeholder/150/50" alt="ECA" class="mb-3">
+                    <h3 class="text-dark">ECA</h3>
+                    <p class="text-muted">Kombi ve Isıtma Sistemleri</p>
+                    <a href="#" class="btn btn-primary">Ürünler ve Servis</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="brand-card p-4 text-center">
+                    <img src="/api/placeholder/150/50" alt="Diğer" class="mb-3">
+                    <h3 class="text-dark">Diğer Markalar</h3>
+                    <p class="text-muted">Tüm Marka Servis Hizmetleri</p>
+                    <a href="#" class="btn btn-primary">Tümünü Gör</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Facts -->
+<section class="quick-facts">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="quick-fact-item">
+                    <i class="fas fa-tools quick-fact-icon"></i>
+                    <h4>Profesyonel Ekip</h4>
+                    <p>Sertifikalı teknik kadro</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="quick-fact-item">
+                    <i class="fas fa-history quick-fact-icon"></i>
+                    <h4>20+ Yıl</h4>
+                    <p>Sektör deneyimi</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="quick-fact-item">
+                    <i class="fas fa-users quick-fact-icon"></i>
+                    <h4>5000+</h4>
+                    <p>Mutlu müşteri</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="quick-fact-item">
+                    <i class="fas fa-check-circle quick-fact-icon"></i>
+                    <h4>%100</h4>
+                    <p>Müşteri memnuniyeti</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hizmetler Bölümü -->
+<section class="services-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Başlıca Hizmetlerimiz</h2>
+            <p class="lead text-muted">Size sunduğumuz profesyonel teknik servis hizmetleri</p>
+        </div>
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas {{ service.icon }}"></i>
+                    </div>
+                    <h3 class="h5 mb-3">{{ service.name }}</h3>
+                    <p class="text-muted mb-4">{{ service.description }}</p>
+                    <a href="{% url 'mainapp:service_request' %}" class="btn btn-primary">Servis Talebi</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Hizmet Bölgeleri -->
+<section class="regions-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Hizmet Verdiğimiz Bölgeler</h2>
+            <p class="lead text-muted">Tunceli ve çevresinde profesyonel teknik servis hizmeti</p>
+        </div>
+        <div class="text-center">
+            <span class="region-badge">Merkez</span>
+            <span class="region-badge">Pertek</span>
+            <span class="region-badge">Çemişgezek</span>
+            <span class="region-badge">Hozat</span>
+            <span class="region-badge">Ovacık</span>
+            <span class="region-badge">Nazımiye</span>
+            <span class="region-badge">Pülümür</span>
+            <span class="region-badge">Mazgirt</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- Müşteri Yorumları -->
+<section class="testimonials-section">
+    <div class="container">
+        <h2 class="text-center mb-5">Müşteri Yorumları</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="testimonial-card text-center">
+                    <img src="/api/placeholder/80/80" alt="Müşteri" class="testimonial-avatar">
+                    <h5>Ahmet Yılmaz</h5>
+                    <p class="text-muted">Hızlı ve profesyonel hizmet. Çok memnun kaldım.</p>
+                </div>
+            </div>
+            <!-- Diğer yorumlar -->
+        </div>
+    </div>
+</section>
+
+<!-- Floating Buttons -->
+<div class="whatsapp-float">
+    <a href="https://wa.me/901234567890" class="btn btn-success btn-lg rounded-circle shadow-lg p-3">
+        <i class="fab fa-whatsapp fa-2x"></i>
+    </a>
+</div>
+
+<div class="service-request-float">
+    <a href="#" class="btn btn-primary btn-lg rounded-circle shadow-lg p-3">
+        <i class="fas fa-wrench fa-2x"></i>
+    </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
