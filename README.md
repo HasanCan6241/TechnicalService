@@ -20,7 +20,7 @@ Bu proje, Tunceli'nin en güvenilir teknik servislerinden biri olan **Gültekin 
 - **SSL Sertifikası:** Route 53 ve AWS Certificate Manager kullanılarak **SSL** entegrasyonu gerçekleştirilmiştir.
 
 ## 🛠 Kullanılan Teknolojiler ve Kütüphaneler
-Proje **Django 3.2.9** çatısı kullanılarak geliştirildi. Kullanılan başlıca kütüphaneler:
+Proje **Django 5.1.4** çatısı kullanılarak geliştirildi. Kullanılan başlıca kütüphaneler:
 
 ```txt
 asgiref==3.7.2
